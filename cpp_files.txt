@@ -1,0 +1,11 @@
+cpp files go in src directrory as source code
+
+mkdir src
+touch src/file_name.cpp
+
+then we need to add the executables to the bottom of CMakeLists.txt
+
+add_executable(file_name src/file_name.cpp)
+target_link_libraries(file_name ${catkin_LIBRARIES})
+add_dependencies(file_name beginner_tutorials_generate_messages_cpp)
+run catkin build

@@ -1,0 +1,26 @@
+
+//rospy files go in scripts
+mkdir scripts
+touch scripts/file_name.py
+chmod +c scripts/file_name.py
+
+first line in file is always #!/usr/bin/env python
+then import rospy
+from std_msgs.msg import String
+
+
+in CMakeLists.txt add
+in catkin_install_python(
+    PROGRAMS 
+    scripts/file_name.py
+    scripts/file_name.py
+    DESTINATION
+    $CATKIN_PACKAGE_BIN_DESTINATION
+)
+
+then catkin build
+
+to run:
+rosrun directrory_name file_name.py
+
+inspect computation graph rqt_graph 

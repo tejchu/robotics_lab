@@ -1,0 +1,48 @@
+
+create msg files
+mkdir msg
+touch msg/File_name.msg
+
+in msg file:
+var_type var_name
+
+in package.xml make sure <build_depend>message_generation... 
+and <exec_deped>message_runtime... are uncommented
+
+then in CMakeLists.txt add message_generation dependency
+to find_package()
+
+in catkin_package(
+    uncomment CATKIN_DEPENDS message_runtime
+)
+
+in add_message_files(
+    add File_name.msg
+)
+
+in generate_messages(
+    add DEPENDENCIES
+    std_msgs
+)
+then catkin build
+to see the msg file components run rosmsg show File_name
+
+create srv files
+mkdir srv
+touch srv/File_name.srv
+
+in srv file:
+var_type var_name
+---
+var_type var_name_of_result
+
+in CMakeLists.txt
+
+in add_service_files(
+    add FILES
+    File_name.srv
+)
+
+run catkin build
+
+to see the srv file components run rossrv show File_name

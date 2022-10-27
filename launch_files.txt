@@ -1,0 +1,43 @@
+Launch files
+extension .launch
+
+<launch>
+    <arg name = "arg_name" default = "default_value"/>
+    <!--name of node -->
+    <node pkg=” --the package where we make the node-- ” type=”name_node” name=”direct subset of type's name“/> 
+	
+    <!--name of another node-->
+    <node pkg=” --the package where we make the node-- ” type=”name_node” name=”direct subset of type's name“/> 
+    
+    //without arguments
+    <param name="node's name/param's name" value = "default val" type="int/string etc."/>
+
+    //with arguments
+    <param name="node's name/param's name" value = "$(arg arg_name)" type="int/string etc."/>
+</launch>
+
+
+launch files:
+//without args
+roslaunch package_name launch_file_name
+//with args
+roslaunch launch_file.launch arg_name:=value
+
+
+<launch>
+    //starting two instances of turtlesim in two different groups
+    <group ns = "turtlesim1">
+        <node pkg = "turlesim" name = "sim" type = "turtlesim_node"/>
+    </group>
+
+    <group ns = "turtlesim2">
+        <node pkg = "turtlesim" name = "sim" type = "turtlesim_node"/>
+    </group>
+    //starts node mimic
+    <node pkg = "turtlesim" name = "mimic" type = "mimic">
+        //remaps output of turtle1 to input of mimic
+        <remap from = "input" to = "turtlesim1/turtle1/>
+        //remaps the output of mimic to input of turtle2
+        <remap from = "output" to = " turtlesim2/turtle1/>
+    </node>
+</launch>
